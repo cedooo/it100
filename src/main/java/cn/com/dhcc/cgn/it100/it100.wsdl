@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ReceiveAlarmInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsonAlarmInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReceiveAlarmInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReceiveAlarmInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConfigurationInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CiCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConfigurationInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConfigurationInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyConfigurationInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsonConfigurationInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyConfigurationInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyConfigurationInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestItims">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hello" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestItimsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestItimsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ReceiveAlarmInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:ReceiveAlarmInfo" />
+  </wsdl:message>
+  <wsdl:message name="ReceiveAlarmInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:ReceiveAlarmInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetConfigurationInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConfigurationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetConfigurationInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConfigurationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyConfigurationInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyConfigurationInfo" />
+  </wsdl:message>
+  <wsdl:message name="VerifyConfigurationInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyConfigurationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestItimsSoapIn">
+    <wsdl:part name="parameters" element="tns:TestItims" />
+  </wsdl:message>
+  <wsdl:message name="TestItimsSoapOut">
+    <wsdl:part name="parameters" element="tns:TestItimsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceForDhccSoap">
+    <wsdl:operation name="ReceiveAlarmInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">将 接收的报警信息 新增事件单</wsdl:documentation>
+      <wsdl:input message="tns:ReceiveAlarmInfoSoapIn" />
+      <wsdl:output message="tns:ReceiveAlarmInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurationInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据配置编码得到设备对应的信息,如cc</wsdl:documentation>
+      <wsdl:input message="tns:GetConfigurationInfoSoapIn" />
+      <wsdl:output message="tns:GetConfigurationInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyConfigurationInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">校对配置信息</wsdl:documentation>
+      <wsdl:input message="tns:VerifyConfigurationInfoSoapIn" />
+      <wsdl:output message="tns:VerifyConfigurationInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestItims">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">连通——测试</wsdl:documentation>
+      <wsdl:input message="tns:TestItimsSoapIn" />
+      <wsdl:output message="tns:TestItimsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceForDhccSoap" type="tns:ServiceForDhccSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReceiveAlarmInfo">
+      <soap:operation soapAction="http://tempuri.org/ReceiveAlarmInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurationInfo">
+      <soap:operation soapAction="http://tempuri.org/GetConfigurationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyConfigurationInfo">
+      <soap:operation soapAction="http://tempuri.org/VerifyConfigurationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestItims">
+      <soap:operation soapAction="http://tempuri.org/TestItims" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceForDhccSoap12" type="tns:ServiceForDhccSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReceiveAlarmInfo">
+      <soap12:operation soapAction="http://tempuri.org/ReceiveAlarmInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurationInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetConfigurationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyConfigurationInfo">
+      <soap12:operation soapAction="http://tempuri.org/VerifyConfigurationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestItims">
+      <soap12:operation soapAction="http://tempuri.org/TestItims" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceForDhcc">
+    <wsdl:port name="ServiceForDhccSoap" binding="tns:ServiceForDhccSoap">
+      <soap:address location="http://jtv-it100app/cgnsm/webservice/serviceForDhcc.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceForDhccSoap12" binding="tns:ServiceForDhccSoap12">
+      <soap12:address location="http://jtv-it100app/cgnsm/webservice/serviceForDhcc.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
