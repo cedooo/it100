@@ -133,10 +133,15 @@ System.out.println(verStr);
 		}
 		return 1;
 	}
-
+	public static final String IS_SUCCESS = "isSuccess";
+	public static final String INFO = "info";
+	
 	@Override
-	public boolean sendAlarmMsg(AlarmMsg alarmMsg) throws Exception {
+	public String sendAlarmMsg(AlarmMsg alarmMsg) throws Exception {
 		boolean formatIsRight = AlarmMsgUtils.valid(alarmMsg);
+		JSONObject resultJson = new JSONObject();
+		resultJson.put(IS_SUCCESS, false);
+		resultJson.put(INFO, "");
 		if(formatIsRight){
 			try {
 				ServiceForDhccStub stub = new ServiceForDhccStub();
@@ -153,25 +158,26 @@ System.out.println(dataJson);
 						String resStr = response.getReceiveAlarmInfoResult();
 						sendSuccess = resStr!=null&&resStr.matches(REGEX_SEND_ALARM_SUCCESS);
 						if(resStr!=null&&resStr.matches(REGEX_SEND_ALARM_EXCEPTION)){
-							System.out.println("发送告警异常：" + resStr);
+							resultJson.put(INFO, resultJson.get(INFO) + "第" + (sendCount+1)  + "次:"  + resStr);
 						}
-System.out.println("第" + (sendCount+1)  + "次发送告警信息结果：" + resStr);
+//System.out.println("第" + (sendCount+1)  + "次发送告警信息结果：" + resStr);
 					} catch (RemoteException e) {
-						e.printStackTrace();
+						resultJson.put(INFO, "无法找到IT100主机");
 					} finally{
 						if(sendSuccess){
-							return true;
+							resultJson.put(IS_SUCCESS, true);
+							resultJson.put(INFO, "发送成功" + (sendCount+1>1?"(第" + (sendCount+1) +"/3次)":""));
+							break;
 						}
 					}
 				}while(++sendCount<RE_SEND_COUNT);
 			} catch (AxisFault e) {
-				e.printStackTrace();
-				throw e;
+				resultJson.put("info", "接口异常");
 			} 
 		}else{
 			throw new Exception("告警信息格式错误");
 		}
-		return false;
+		return resultJson.toString();
 	}
 	
 }

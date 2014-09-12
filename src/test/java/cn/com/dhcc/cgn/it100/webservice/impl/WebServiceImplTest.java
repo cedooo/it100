@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.junit.Test;
 
 import cn.com.dhcc.cgn.it100.pojo.AlarmMsg;
@@ -52,7 +53,10 @@ public class WebServiceImplTest {
 		msg.setLevel("警告");
 		msg.setAlarmTime("2014-09-09 10:17:07");
 		try {
-			webServiceImpl.sendAlarmMsg(msg);
+			String rt = webServiceImpl.sendAlarmMsg(msg);
+			JSONObject jsObj = new JSONObject(rt);
+			System.out.println(jsObj.get("isSuccess"));
+			System.out.println(jsObj.get("info"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

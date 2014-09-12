@@ -16,10 +16,10 @@ public interface WebService {
 	/**
 	 * 发送告警信息
 	 * @param alarmMsg 告警信息
-	 * @return 发送成功返回true，否则返回false.
+	 * @return 发送结果json字符串:{"isSucccess":"true","info":""}
 	 * @throws Exception 参数格式错误等错误时返回异常信息
 	 */
-	boolean sendAlarmMsg(AlarmMsg alarmMsg) throws Exception;
+	String sendAlarmMsg(AlarmMsg alarmMsg) throws Exception;
 	/**
 	 * 得到资产管理信息
 	 * @param it100primary IT100资产唯一标识
