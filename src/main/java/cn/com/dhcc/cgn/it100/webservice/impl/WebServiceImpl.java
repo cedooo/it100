@@ -141,7 +141,7 @@ System.out.println(verStr);
 		boolean formatIsRight = AlarmMsgUtils.valid(alarmMsg);
 		JSONObject resultJson = new JSONObject();
 		resultJson.put(IS_SUCCESS, false);
-		resultJson.put(INFO, "");
+		resultJson.put(INFO, "未发送");
 		if(formatIsRight){
 			try {
 				ServiceForDhccStub stub = new ServiceForDhccStub();
