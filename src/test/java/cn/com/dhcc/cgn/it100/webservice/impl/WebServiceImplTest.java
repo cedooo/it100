@@ -45,13 +45,13 @@ public class WebServiceImplTest {
 	//@Test
 	public void testSendAlarmMsg() {
 		AlarmMsg msg = new AlarmMsg();
-		msg.setAlarmId("12321412");
+		msg.setAlarmId("4435931");
 		msg.setPrimaryId(primaries[0]);
 		msg.setAlarmDetail("告警测试 test 123 !@#");
 		msg.setIp("12.23.22.1");
 		msg.setNoticePople("pcit|张三;pcit|李四");
 		msg.setLevel("警告");
-		msg.setAlarmTime("2014-09-09 10:17:07");
+		msg.setAlarmTime("2014-09-16 16:41:52");
 		try {
 			String rt = webServiceImpl.sendAlarmMsg(msg);
 			JSONObject jsObj = new JSONObject(rt);
