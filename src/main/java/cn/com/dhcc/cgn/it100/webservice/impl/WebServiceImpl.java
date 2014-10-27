@@ -57,15 +57,15 @@ System.out.println(it100Primary);
 							if(success!=null&&success.matches(REGEX_GET_RESOURCES_SUCCESS)){
 								//{"Name":"路由器001","MkUse":"联网","SonType":"路由器","DoneStatus":"","Type":"网络通信设备","Address":"大亚湾专家学校22104","FmCompany":"中国广核电力股份有限公司","CICode":"C31256","ExpCode":"010212"}
 								JSONObject manageJson = new JSONObject(manageObj.toString());
-								String name = manageJson.getString("Name");
-								String mkUse = manageJson.getString("MkUse");
-								String type = manageJson.getString("Type");
-								String sonType = manageJson.getString("SonType");
-								String doneStatus = manageJson.getString("DoneStatus");
-								String address = manageJson.getString("Address");
-								String fmCompany = manageJson.getString("FmCompany");
-								String ciCode = manageJson.getString("CICode");
-								String expCode = manageJson.getString("ExpCode");
+								String name = manageJson.get("Name").toString();
+								String mkUse = manageJson.get("MkUse").toString();
+								String type = manageJson.get("Type").toString();
+								String sonType = manageJson.get("SonType").toString();
+								String doneStatus = manageJson.get("DoneStatus").toString();
+								String address = manageJson.get("Address").toString();
+								String fmCompany = manageJson.get("FmCompany").toString();
+								String ciCode = manageJson.get("CICode").toString();
+								String expCode = manageJson.get("ExpCode").toString();
 								manageInfo.setName(name);
 								manageInfo.setMkUse(mkUse);
 								manageInfo.setType(type);
