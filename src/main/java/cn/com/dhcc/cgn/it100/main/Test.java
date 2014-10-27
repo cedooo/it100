@@ -8,7 +8,7 @@ public class Test {
 	public static void main(String[] args) {
 		IT100ResourceManageInfo manageInfo = new IT100ResourceManageInfo();
 		//String jsonObj = "{\"Name\":null}";
-		String jsonObj = "{\"Name\":dsaf}";
+		String jsonObj = "{\"Name\":\"\"}";
 		JSONObject manageJson = new JSONObject(jsonObj);
 		//String name = manageJson.getString("Name");
 		String name = manageJson.get("Name").toString();
