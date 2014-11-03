@@ -25,13 +25,13 @@ public class WebServiceImpl implements WebService{
 	/**发送失败时，重发次数*/
 	private static final int RE_SEND_COUNT = 3;   
 	/**发送告警返回[成功]*/
-	private static final String REGEX_SEND_ALARM_SUCCESS = "^Success.*";
+	private static final String REGEX_SEND_ALARM_SUCCESS = "^[S|s]uccess.*";
 	/**发送告警返回[异常]*/
-	private static final String REGEX_SEND_ALARM_EXCEPTION = "^exception.*";
+	private static final String REGEX_SEND_ALARM_EXCEPTION = "^[E|e]xception.*";
 	/**接受资产信息成功*/
-	private static final String REGEX_GET_RESOURCES_SUCCESS = "^success.*";
+	private static final String REGEX_GET_RESOURCES_SUCCESS = "^[S|s]uccess.*";
 	/**发送资产信息成功*/
-	private static final String REGEX_SEND_RESOURCES_SUCCESS = "^success$";
+	private static final String REGEX_SEND_RESOURCES_SUCCESS = "^[S|s]uccess$";
 	/**获取管理资产信息返回成功与否的key*/
 	private static final String GET_IT100_MANAGE_INFO_RESULT_KEY = "IsSuccess";   
 	/**获取管理资产信息 返回的管理对象name*/
@@ -148,7 +148,7 @@ System.out.println(verStr);
 				ReceiveAlarmInfo receiveAlarmInfo = new ReceiveAlarmInfo();
 				JSONObject jsonObj = new JSONObject(alarmMsg);
 				String dataJson = jsonObj.toString();
-System.out.println(dataJson);
+System.out.println("发送的数据：\n" + dataJson);
 				receiveAlarmInfo.setJsonAlarmInfo(dataJson);
 				int sendCount = 0;
 				do{
@@ -156,6 +156,7 @@ System.out.println(dataJson);
 					try {
 						ReceiveAlarmInfoResponse  response = stub.receiveAlarmInfo(receiveAlarmInfo);
 						String resStr = response.getReceiveAlarmInfoResult();
+System.out.println("返回信息:\n" + resStr);
 						sendSuccess = resStr!=null&&resStr.matches(REGEX_SEND_ALARM_SUCCESS);
 						if(resStr!=null&&resStr.matches(REGEX_SEND_ALARM_EXCEPTION)){
 							resultJson.put(INFO, resultJson.get(INFO) + "第" + (sendCount+1)  + "次:"  + resStr);
