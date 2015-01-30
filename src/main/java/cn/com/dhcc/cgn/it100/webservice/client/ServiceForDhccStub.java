@@ -142,7 +142,7 @@
      */
     public ServiceForDhccStub(org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
         
-                    this(configurationContext,"http://jtv-it100app/cgnsm/webservice/serviceForDhcc.asmx" );
+                    this(configurationContext,"http://jtv-it100app/CGNSM/WebService/DHCC/ServiceForDhcc.asmx" );
                 
     }
 
@@ -151,7 +151,7 @@
      */
     public ServiceForDhccStub() throws org.apache.axis2.AxisFault {
         
-                    this("http://jtv-it100app/cgnsm/webservice/serviceForDhcc.asmx" );
+                    this("http://jtv-it100app/CGNSM/WebService/DHCC/ServiceForDhcc.asmx" );
                 
     }
 
@@ -684,7 +684,7 @@
         }
         return false;
     }
-     //http://jtv-it100app/cgnsm/webservice/serviceForDhcc.asmx
+     //http://jtv-it100app/CGNSM/WebService/DHCC/ServiceForDhcc.asmx
         public static class GetConfigurationInfo
         implements org.apache.axis2.databinding.ADBBean{
         

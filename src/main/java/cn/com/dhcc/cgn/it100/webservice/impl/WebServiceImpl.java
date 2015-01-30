@@ -163,7 +163,7 @@ System.out.println("返回信息:\n" + resStr);
 						}
 //System.out.println("第" + (sendCount+1)  + "次发送告警信息结果：" + resStr);
 					} catch (RemoteException e) {
-						resultJson.put(INFO, "无法找到IT100主机");
+						resultJson.put(INFO, "无法找到IT100主机或远程接口异常。");
 					} finally{
 						if(sendSuccess){
 							resultJson.put(IS_SUCCESS, true);

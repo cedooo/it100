@@ -20,10 +20,8 @@ public class MainDe {
 			GetConfigurationInfoResponse  response = stub.getConfigurationInfo(configInfo);
 			System.out.println(response.getGetConfigurationInfoResult());
 		} catch (AxisFault e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
